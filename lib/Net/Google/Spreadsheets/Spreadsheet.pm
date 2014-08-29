@@ -26,7 +26,7 @@ entry_has key => (
                 $key = $1;
             }
         }
-        return {URI->new($link->href)->query_form}->{key};
+        return $key;
     },
 );
 
