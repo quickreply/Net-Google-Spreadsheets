@@ -20,6 +20,12 @@ entry_has key => (
         my ($link) = grep {
             $_->rel eq 'alternate' && $_->type eq 'text/html'
         } $atom->link;
+        my $key = {URI->new($link->href)->query_form}->{key};
+        if ( !$key ) {
+            if ($link->href =~ /\/d\/([^\/]+)/){
+                $key = $1;
+            }
+        }
         return {URI->new($link->href)->query_form}->{key};
     },
 );
